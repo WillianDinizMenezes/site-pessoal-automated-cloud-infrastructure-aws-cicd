@@ -1,149 +1,62 @@
-# Portfolio Estático - HTML/CSS/JavaScript
+🚀 Meu Portfólio Profissional - Cloud & Development
+Bem-vindo ao repositório do meu site pessoal! Este projeto é mais do que apenas uma vitrine das minhas habilidades; é um laboratório onde aplico conceitos de desenvolvimento front-end, arquitetura de nuvem e práticas DevOps que venho estudando intensamente na minha transição de carreira para a tecnologia.
 
-Versão estática do portfólio profissional de **Willian Diniz Menezes**, otimizada para deploy simples e performance máxima.
+🎯 O Projeto
+Desenvolvi este portfólio focado em performance e simplicidade. Optei por uma arquitetura de site estático para garantir um carregamento ultra rápido e uma base sólida para a implementação de infraestrutura moderna na AWS.
 
-## 📁 Estrutura
+O que você vai encontrar aqui:
+Performance Pura: Desenvolvido com HTML5, CSS3 e JavaScript Vanilla (sem frameworks pesados) para garantir que a experiência do usuário seja fluida em qualquer dispositivo.
 
-```
-portfolio-static/
-├── index.html    # Página única com todas as seções
-├── styles.css    # Estilos completos (glassmorphism, animações, responsivo)
-├── script.js     # Navegação suave e interações
-└── README.md     # Esta documentação
-```
+Design Responsivo: Uma interface moderna, utilizando técnicas de Glassmorphism, totalmente adaptada para mobile, tablet e desktop.
 
-## ✨ Características
+Foco em Cloud: O projeto foi estruturado para ser distribuído globalmente através da AWS, utilizando S3, CloudFront e Route 53.
 
-- **Zero dependências** - Apenas HTML, CSS e JavaScript puro
-- **Sem build necessário** - Abre direto no navegador
-- **Performance otimizada** - Carregamento rápido
-- **Design moderno** - Glassmorphism, gradientes, animações
-- **Totalmente responsivo** - Mobile-first design
-- **SEO-friendly** - Conteúdo estático indexável
+🏗️ Minha Estrutura de Arquivos
+Organizei o código de forma modular para facilitar futuras manutenções e expansões:
 
-## 🚀 Como Usar
+Plaintext
+website/
+├── index.html    # A estrutura e conteúdo das seções (Hero, Sobre, Skills, Projetos)
+├── styles.css    # Minha folha de estilos personalizada e responsiva
+├── script.js     # Interações, animações e lógica de navegação
+└── README.md     # Onde você está agora!
+⚙️ Como eu rodo este projeto
+Localmente
+Como não utilizo dependências externas, basta clonar o repositório e abrir o index.html diretamente no seu navegador favorito.
 
-### Localmente
+Para testes de servidor (opcional)
+Às vezes, gosto de testar como a aplicação se comporta em um servidor HTTP local:
 
-Simplesmente abra o arquivo `index.html` no seu navegador:
-
-```bash
-# Windows
-start index.html
-
-# Mac/Linux
-open index.html
-```
-
-Ou arraste o arquivo para o navegador.
-
-### Com Servidor Local
-
-Para testar com um servidor HTTP local:
-
-```bash
-# Python 3
+Bash
+# Se você tiver Python instalado
 python -m http.server 8000
+☁️ Deploy e Infraestrutura (Onde a mágica acontece)
+Este é o ponto onde conecto meu lado desenvolvedor com meu foco em Cloud e DevOps. Atualmente, o deploy deste site é feito utilizando as melhores práticas de infraestrutura como código (IaC):
 
-# Node.js (http-server)
-npx http-server -p 8000
-```
+Hospedagem: Amazon S3 (Bucket configurado para Static Website Hosting).
 
-Acesse: `http://localhost:8000`
+Entrega: Amazon CloudFront para cache global e HTTPS.
 
-## 🎨 Seções do Portfólio
+DNS: Amazon Route 53 para gerenciamento de domínio.
 
-1. **Hero** - Apresentação com nome, título e call-to-actions
-2. **Sobre** - Jornada de transição de carreira e experiência
-3. **Skills** - Tech stack (AWS, Java, DevOps) e soft skills
-4. **Projetos** - 3 projetos destacados com detalhes técnicos
-5. **Contato** - Links para LinkedIn, GitHub e email
+Automação: O próximo passo é a implementação completa via CloudFormation, que estou subindo hoje mesmo para este repositório.
 
-## 🔧 Personalização
+🚀 Próximos Passos no Roadmap
+Estou constantemente evoluindo este projeto. Meus próximos marcos técnicos são:
 
-### Alterar Informações
+[ ] Finalizar o template de CloudFormation para provisionar toda a infra com um clique.
 
-Edite o arquivo `index.html` e procure por:
-- Nome e título na seção Hero
-- Descrições nas seções About e Skills
-- Projetos na seção Projects
-- Links de contato na seção Contact
+[ ] Implementar uma pipeline de CI/CD com GitHub Actions para deploy automático no S3.
 
-### Alterar Cores
+[ ] Criar uma versão containerizada com Docker para execução em ambientes diversos.
 
-Edite as variáveis CSS em `styles.css`:
+🤝 Vamos nos conectar?
+Se você quiser trocar uma ideia sobre AWS, Java ou o mundo de DevOps, sinta-se à vontade para entrar em contato:
 
-```css
-:root {
-    --color-aws-orange: #FF9900;
-    --color-cloud-blue: #00A1C9;
-    /* ... outras cores */
-}
-```
+LinkedIn: willian-diniz-2360b74b
 
-## 📦 Deploy
+Meu GitHub: WillianDinizMenezes
 
-### AWS S3 + CloudFront
+E-mail: williandiniz2412@hotmail.com
 
-Perfeito para hospedagem estática:
-
-```bash
-# Upload para S3
-aws s3 sync . s3://seu-bucket --exclude "README.md"
-
-# Configurar como website estático
-aws s3 website s3://seu-bucket --index-document index.html
-```
-
-### GitHub Pages
-
-1. Crie um repositório no GitHub
-2. Faça push dos arquivos
-3. Ative GitHub Pages nas configurações
-4. Acesse: `https://seu-usuario.github.io/repositorio`
-
-### Netlify/Vercel
-
-1. Arraste a pasta para o site
-2. Deploy automático
-3. URL personalizada disponível
-
-## 🐳 Docker (Próximo Passo)
-
-Este portfólio está pronto para ser containerizado:
-
-```dockerfile
-FROM nginx:alpine
-COPY . /usr/share/nginx/html
-EXPOSE 80
-```
-
-Veja o projeto DevOps completo para deploy com Docker + ECR + EC2.
-
-## 📱 Responsividade
-
-O design é totalmente responsivo com breakpoints em:
-- **Desktop**: > 768px
-- **Tablet**: 481px - 768px
-- **Mobile**: < 480px
-
-## 🎯 Performance
-
-- **Sem JavaScript frameworks** - Vanilla JS apenas
-- **CSS otimizado** - Variáveis e reutilização
-- **Imagens inline** - SVGs para ícones
-- **Lazy loading** - Animações com Intersection Observer
-
-## 🔗 Links
-
-- **LinkedIn**: [willian-diniz-2360b74b](https://www.linkedin.com/in/willian-diniz-2360b74b)
-- **GitHub**: [WillianDinizMenezes](https://github.com/WillianDinizMenezes)
-- **Email**: williandiniz2412@hotmail.com
-
-## 📄 Licença
-
-© 2025 Willian Diniz Menezes. Todos os direitos reservados.
-
----
-
-**Próximos Passos**: Containerizar com Docker e fazer deploy na AWS! 🚀
+© 2026 Willian Diniz Menezes. Construído com dedicação durante minha jornada de Lifelong Learning.
