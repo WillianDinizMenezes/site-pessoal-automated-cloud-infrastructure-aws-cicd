@@ -1,0 +1,10 @@
+# Arquivos e diretórios que não devem ser incluídos na imagem Docker
+Dockerfile
+.dockerignore
+.git
+.gitignore
+README.md
+*.md
+.vscode
+.idea
+node_modules

@@ -1,0 +1,69 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Template para Site Estático com S3 e CloudFront (OAC)
+
+Resources:
+  # 1. Bucket S3 para os arquivos do site
+  WebsiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "meu-site-estatico-${AWS::AccountId}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  # 2. Origin Access Control (OAC) - A "chave" de acesso do CloudFront
+  CloudFrontOriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties: 
+      OriginAccessControlConfig: 
+        Description: "Acesso ao S3 via CloudFront"
+        Name: !Sub "${AWS::StackName}-OAC"
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  # 3. Distribuição CloudFront
+  WebsiteDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        DefaultRootObject: index.html
+        Origins:
+          - Id: S3Origin
+            DomainName: !GetAtt WebsiteBucket.RegionalDomainName
+            OriginAccessControlId: !GetAtt CloudFrontOriginAccessControl.Id
+            S3OriginConfig:
+              OriginAccessIdentity: "" # Deixar vazio ao usar OAC
+        DefaultCacheBehavior:
+          TargetOriginId: S3Origin
+          ViewerProtocolPolicy: redirect-to-https
+          Compress: true
+          ForwardedValues:
+            QueryString: false
+
+  # 4. Política do Bucket (Permite que o CloudFront leia o S3)
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref WebsiteBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Action: "s3:GetObject"
+            Effect: "Allow"
+            Resource: !Sub "arn:aws:s3:::${WebsiteBucket}/*"
+            Principal:
+              Service: "cloudfront.amazonaws.com"
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub "arn:aws:partition:cloudfront::${AWS::AccountId}:distribution/${WebsiteDistribution}"
+
+Outputs:
+  CloudFrontURL:
+    Description: URL para acessar o site
+    Value: !GetAtt WebsiteDistribution.DomainName
+  S3BucketName:
+    Value: !Ref WebsiteBucket
