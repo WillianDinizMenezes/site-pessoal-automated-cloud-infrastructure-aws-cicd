@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Iniciando o deploy do site..."
+  build:
+    commands:
+      - echo "Sincronizando arquivos com o S3..."
+      # O comando abaixo pega tudo dentro da pasta 'web' e joga no bucket.
+      # Usamos a variável $BUCKET_NAME que definimos no template do Pipeline.
+      - aws s3 sync web/ s3://$BUCKET_NAME/ --delete
+  post_build:
+    commands:
+      - echo "Limpando o cache do CloudFront para atualizar o site..."
+      # Usamos a variável $DIST_ID que definimos no template do Pipeline.
+      - aws cloudfront create-invalidation --distribution-id $DIST_ID --paths "/*"
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: web
