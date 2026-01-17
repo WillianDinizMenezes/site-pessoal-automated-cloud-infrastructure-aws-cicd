@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Fase 1 - Infraestrutura Base (S3 e DNS) para willdiniz.com.br
+
+Parameters:
+  DomainName:
+    Type: String
+    Default: willdiniz.com.br
+
+Resources:
+  # Onde o site vai morar
+  WebsiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "site-statico-${DomainName}-${AWS::AccountId}"
+      # Bloqueia todo acesso público direto ao S3 (Segurança!)
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  # A Zona de DNS
+  MyHostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: !Ref DomainName
+
+Outputs:
+  BucketName:
+    Value: !Ref WebsiteBucket
+  HostedZoneId:
+    Value: !Ref MyHostedZone
+  NameServers:
+    Description: COPIE ESTES VALORES PARA A LOCALWEB
+    Value: !Join [", ", !GetAtt MyHostedZone.NameServers]
