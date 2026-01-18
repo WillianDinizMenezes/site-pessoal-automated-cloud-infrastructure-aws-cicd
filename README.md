@@ -1,62 +1,46 @@
-🚀 Meu Portfólio Profissional - Cloud & Development
-Bem-vindo ao repositório do meu site pessoal! Este projeto é mais do que apenas uma vitrine das minhas habilidades; é um laboratório onde aplico conceitos de desenvolvimento front-end, arquitetura de nuvem e práticas DevOps que venho estudando intensamente na minha transição de carreira para a tecnologia.
+☁️ Automated Cloud Infrastructure: Site Estático com CI/CD na AWS
+Este repositório documenta a implementação de uma arquitetura de hospedagem profissional na AWS, utilizando o conceito de Infrastructure as Code (IaC) e CI/CD. O foco deste projeto foi a transição de um ambiente manual para uma estrutura 100% automatizada e segura.
 
-🎯 O Projeto
-Desenvolvi este portfólio focado em performance e simplicidade. Optei por uma arquitetura de site estático para garantir um carregamento ultra rápido e uma base sólida para a implementação de infraestrutura moderna na AWS.
+🖼️ Arquitetura da Solução
+Legenda Técnica e Fluxo de Dados
+User & Route 53: O tráfego começa com o usuário acessando willdiniz.com.br, resolvido pelo Amazon Route 53 através de registros tipo Alias.
 
-O que você vai encontrar aqui:
-Performance Pura: Desenvolvido com HTML5, CSS3 e JavaScript Vanilla (sem frameworks pesados) para garantir que a experiência do usuário seja fluida em qualquer dispositivo.
+CloudFront & ACM: O Amazon CloudFront atua como CDN global, provendo HTTPS através de certificados SSL/TLS gerenciados pelo AWS Certificate Manager (ACM).
 
-Design Responsivo: Uma interface moderna, utilizando técnicas de Glassmorphism, totalmente adaptada para mobile, tablet e desktop.
+S3 com Site Seguro: Os arquivos estáticos residem em um bucket Amazon S3 totalmente privado, acessível exclusivamente via CloudFront através de Origin Access Control (OAC).
 
-Foco em Cloud: O projeto foi estruturado para ser distribuído globalmente através da AWS, utilizando S3, CloudFront e Route 53.
+Trilha de Automação (CI/CD): Ao realizar um git push no GitHub, o AWS CodePipeline orquestra o fluxo, acionando o AWS CodeBuild para sincronizar os arquivos e invalidar o cache da CDN automaticamente.
 
-🏗️ Minha Estrutura de Arquivos
-Organizei o código de forma modular para facilitar futuras manutenções e expansões:
+CloudFormation: Toda a infraestrutura foi provisionada como código (IaC), garantindo replicabilidade e governança.
 
+🏗️ A Jornada de Implementação
+Este projeto foi dividido em três fases críticas, refletindo o aprendizado prático para a certificação AWS Certified Cloud Practitioner (CLF-C02):
+
+Fase 1: Fundação e DNS
+Estabelecemos a base com a criação da Hosted Zone e a migração da autoridade DNS. Configuramos o S3 com políticas rigorosas de bloqueio de acesso público para garantir a segurança desde o primeiro dia.
+
+Fase 2: Performance e Segurança
+Provisionamos a rede de entrega global (CloudFront) e o certificado de segurança (ACM). O desafio técnico aqui foi a configuração do OAC, garantindo que o "cadeado" de segurança estivesse presente tanto na conexão do usuário quanto na comunicação entre os serviços AWS.
+
+Fase 3: O Ciclo de Vida DevOps
+Integramos o repositório GitHub à AWS via CodeStar Connections. Criamos um arquivo buildspec.yml customizado para que o deploy ocorra sem intervenção humana, reduzindo o erro operacional e acelerando a entrega de conteúdo.
+
+📁 Estrutura do Repositório
 Plaintext
-website/
-├── index.html    # A estrutura e conteúdo das seções (Hero, Sobre, Skills, Projetos)
-├── styles.css    # Minha folha de estilos personalizada e responsiva
-├── script.js     # Interações, animações e lógica de navegação
-└── README.md     # Onde você está agora!
-⚙️ Como eu rodo este projeto
-Localmente
-Como não utilizo dependências externas, basta clonar o repositório e abrir o index.html diretamente no seu navegador favorito.
+.
+├── infra/                  # Templates AWS CloudFormation (IaC)
+│   ├── 01-base-dns.yaml    # Configuração de DNS e Bucket S3
+│   ├── 02-infra-ssl-cdn.yaml # SSL, CloudFront e Segurança OAC
+│   └── 03-pipeline.yaml    # Automação CodePipeline e CodeBuild
+├── web/                    # Código fonte do site (HTML/CSS/JS)
+├── assets/                 # Imagens e Diagramas da arquitetura
+├── buildspec.yml           # Manual de instruções para o robô de deploy
+└── README.md               # Documentação do projeto
+🚀 Resultados Alcançados
+Deploy Zero-Touch: Atualização do site em tempo real via Git.
 
-Para testes de servidor (opcional)
-Às vezes, gosto de testar como a aplicação se comporta em um servidor HTTP local:
+Segurança Avançada: Uso de OAC e SSL/TLS.
 
-Bash
-# Se você tiver Python instalado
-python -m http.server 8000
-☁️ Deploy e Infraestrutura (Onde a mágica acontece)
-Este é o ponto onde conecto meu lado desenvolvedor com meu foco em Cloud e DevOps. Atualmente, o deploy deste site é feito utilizando as melhores práticas de infraestrutura como código (IaC):
+Infraestrutura Reutilizável: Todo o ambiente pode ser recriado em minutos via CloudFormation.
 
-Hospedagem: Amazon S3 (Bucket configurado para Static Website Hosting).
-
-Entrega: Amazon CloudFront para cache global e HTTPS.
-
-DNS: Amazon Route 53 para gerenciamento de domínio.
-
-Automação: O próximo passo é a implementação completa via CloudFormation, que estou subindo hoje mesmo para este repositório.
-
-🚀 Próximos Passos no Roadmap
-Estou constantemente evoluindo este projeto. Meus próximos marcos técnicos são:
-
-[ ] Finalizar o template de CloudFormation para provisionar toda a infra com um clique.
-
-[ ] Implementar uma pipeline de CI/CD com GitHub Actions para deploy automático no S3.
-
-[ ] Criar uma versão containerizada com Docker para execução em ambientes diversos.
-
-🤝 Vamos nos conectar?
-Se você quiser trocar uma ideia sobre AWS, Java ou o mundo de DevOps, sinta-se à vontade para entrar em contato:
-
-LinkedIn: willian-diniz-2360b74b
-
-Meu GitHub: WillianDinizMenezes
-
-E-mail: williandiniz2412@hotmail.com
-
-© 2026 Willian Diniz Menezes. Construído com dedicação durante minha jornada de Lifelong Learning.
+Projeto desenvolvido por Willian Diniz Menezes Estudante da Escola da Nuvem - Programa AWS re/Start + IA
