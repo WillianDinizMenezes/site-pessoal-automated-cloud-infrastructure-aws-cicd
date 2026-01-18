@@ -146,12 +146,12 @@ Acompanhe o processo de deploy automatizado em tempo real:
 
 <img width="1359" height="591" alt="deploy funcionando" src="https://github.com/user-attachments/assets/b4969b9a-502c-442c-bad7-001b31fce87f" />
 
-Site no Ar com HTTPS
+**Site no Ar com HTTPS**
 Comprovação do acesso seguro ao site customizado:
 
 <img width="1366" height="768" alt="Segurança funcionando" src="https://github.com/user-attachments/assets/2b62c282-feae-4e6a-ba72-049ecff5a241" />
 
-## 🛠️ Tecnologias Utilizadas<img width="1654" height="1169" alt="site-pessoal-automated-cloud-infrastructure-aws-cicd drawio" src="https://github.com/user-attachments/assets/fada01d9-ff0f-403b-8428-957a20554af1" />
+## 🛠️ Tecnologias Utilizadas
 
 <div align="center">
 
@@ -175,8 +175,8 @@ Comprovação do acesso seguro ao site customizado:
 
 Estudante da **Escola da Nuvem** - Programa **AWS re/Start + IA**
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/seu-perfil)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/seu-usuario)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/williandinizmenezes/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/WillianDinizMenezes)
 [![Website](https://img.shields.io/badge/Website-FF7139?style=for-the-badge&logo=firefox-browser&logoColor=white)](https://willdiniz.com.br)
 
 </div>
