@@ -9,7 +9,8 @@ phases:
       - echo "Sincronizando arquivos com o S3..."
       # O comando abaixo pega tudo dentro da pasta 'web' e joga no bucket.
       # Usamos a variável $BUCKET_NAME que definimos no template do Pipeline.
-      - aws s3 sync web/ s3://$BUCKET_NAME/ --delete
+      - aws s3 sync web/ s3://$BUCKET_NAME/ 
+         
   post_build:
     commands:
       - echo "Limpando o cache do CloudFront para atualizar o site..."
