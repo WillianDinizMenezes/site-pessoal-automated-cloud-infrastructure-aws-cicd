@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Fase 2 - Deploy Limpo com Suporte a Root e WWW
+Description: Fase 2 - Deploy Limpo com Suporte a Root e WWW v2
 
 Parameters:
   DomainName:
@@ -73,7 +73,7 @@ Resources:
         DNSName: !GetAtt MyDistribution.DomainName
         HostedZoneId: Z2FDTNDATAQYW2
 
-  MyBucketPolicy:
+  MyBucketPolicyRestored:
     Type: AWS::S3::BucketPolicy
     Properties:
       Bucket: !Ref BucketName

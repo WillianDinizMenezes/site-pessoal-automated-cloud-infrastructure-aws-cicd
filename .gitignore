@@ -1,3 +1,10 @@
 .DS_Store
 *.log
 node_modules/
+CV%20-%20Willian.Menezes.pdf
+# Ignore
+node_modules/
+.temp_ag_kit/
+antigravity-doc
+tests
+others
