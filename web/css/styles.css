@@ -195,6 +195,32 @@ h3 {
     border: none;
 }
 
+/* ===== Project Links ===== */
+.project-link {
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+.project-link:hover {
+    color: var(--color-primary);
+    transform: translateX(5px);
+}
+
+.project-link svg {
+    transition: transform 0.3s ease;
+}
+
+.project-link:hover svg {
+    transform: rotate(15deg);
+}
+
 .btn-secondary {
     background: transparent;
     border: 1px solid var(--color-border);
